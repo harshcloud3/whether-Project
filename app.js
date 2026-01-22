@@ -234,6 +234,7 @@ function handleSearch() {
     }
 }
 // Current location weather feature
+
 // Get Weather by Current Location
 function getCurrentLocationWeather() {
     if (!navigator.geolocation) {
@@ -637,6 +638,7 @@ function updateWeatherTips(weatherCondition) {
     
     elements.weatherTips.innerHTML = allTips.map(tip => `<p class="text-sm">• ${tip}</p>`).join('');
 }
+// Celsius to Fahrenheit toggle
 
 // Temperature Unit Conversion
 function switchTemperatureUnit(unit) {
