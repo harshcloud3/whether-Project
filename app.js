@@ -1,3 +1,5 @@
+// Weather API integration logic
+
 // Configuration
 const CONFIG = {
     API_KEY: '4940adb2aad947ef84256c41bd057a84', // OpenWeatherMap API Key
