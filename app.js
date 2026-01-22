@@ -670,6 +670,7 @@ function switchTemperatureUnit(unit) {
 function celsiusToFahrenheit(celsius) {
     return Math.round((celsius * 9/5) + 32);
 }
+// Store recent searched cities
 
 // Recent Cities Management
 function loadRecentCities() {
