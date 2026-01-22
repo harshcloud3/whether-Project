@@ -1,6 +1,7 @@
 /* Responsive weather UI styling */
 
 
+
 /* Custom Animations */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
@@ -88,6 +89,7 @@
 .day-info .date {
     @apply text-sm text-gray-500;
 }
+// Dynamic background based on weather
 
 /* Weather Background Elements */
 .cloud {
