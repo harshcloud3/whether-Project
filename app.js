@@ -757,6 +757,7 @@ function showLoading(show) {
         elements.loading.classList.add('hidden');
     }
 }
+// Handle invalid input and API errors
 
 // Error Handling
 function showError(message) {
