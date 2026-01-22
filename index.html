@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MausamWatch | Indian Weather App</title>
+    <script src="https://cdn.tailwindcss.com/3.3.0"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌤️</text></svg>">
+</head>
+<body class="min-h-screen bg-gradient-to-br from-amber-50 to-sky-100 font-['Poppins'] transition-all duration-500">
+    <!-- Weather Background Layer -->
+    <div id="weather-bg" class="fixed inset-0 z-0 opacity-30 transition-all duration-1000">
+        <div class="sun absolute top-10 right-10 w-20 h-20 bg-yellow-400 rounded-full shadow-lg"></div>
+        <div class="cloud cloud-1 absolute top-20 left-10 w-40 h-20 bg-white rounded-full opacity-70"></div>
+        <div class="cloud cloud-2 absolute top-40 right-20 w-32 h-16 bg-white rounded-full opacity-60"></div>
+    </div>
+
+    <div class="container mx-auto px-4 py-8 max-w-6xl relative z-10">
+        <!-- Header -->
+        <header class="text-center mb-10 animate-fade-in">
+            <h1 class="text-5xl md:text-6xl font-bold mb-3 bg-gradient-to-r from-sky-600 to-emerald-600 bg-clip-text text-transparent font-['Space_Grotesk']">
+                <i class="fas fa-cloud-sun text-4xl mr-3 text-sky-500"></i>
+                MausamWatch
+            </h1>
+            <p class="text-gray-600 text-lg">Your personal Indian weather companion </p>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Column: Search & Current Weather -->
+            <div class="lg:col-span-2">
+                <!-- Search Section -->
+                <div class="glass-card mb-8 p-6 rounded-2xl shadow-xl animate-slide-up">
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <div class="flex-1 relative">
+                            <i class="fas fa-search absolute left-4 top-4 text-sky-400"></i>
+                            <input 
+                                type="text" 
+                                id="city-input" 
+                                placeholder="Search Indian city (e.g., Mumbai, Delhi, Bangalore)" 
+                                class="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-sky-200 focus:border-sky-400 focus:ring-2 focus:ring-sky-300 outline-none transition-all bg-white/80"
+                            >
+                            <div id="recent-cities-dropdown" class="hidden absolute top-full left-0 right-0 mt-2 bg-white rounded-xl shadow-lg z-50 border border-sky-100 max-h-60 overflow-y-auto">
+                                <!-- Recent cities will appear here -->
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <button id="search-btn" class="btn-primary flex items-center gap-2">
+                                <i class="fas fa-search"></i> Search
+                            </button>
+                            <button id="location-btn" class="btn-secondary flex items-center gap-2" title="Use current location">
+                                <i class="fas fa-location-arrow"></i>
+                                <span class="hidden md:inline">My Location</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Unit Toggle -->
+                    <div class="mt-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                        <div class="flex items-center gap-4">
+                            <span class="text-gray-700 font-medium"><i class="fas fa-thermometer-half text-sky-500"></i> Temperature:</span>
+                            <div class="flex bg-sky-100 rounded-full p-1">
+                                <button id="celsius-btn" class="unit-btn active">°C</button>
+                                <button id="fahrenheit-btn" class="unit-btn">°F</button>
+                            </div>
+                        </div>
+                        <div id="weather-alert" class="hidden">
+                            <!-- Weather alerts will appear here -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Current Weather -->
+                <div id="current-weather" class="glass-card p-6 md:p-8 rounded-2xl shadow-xl mb-8 animate-slide-up" style="animation-delay: 0.1s">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-center mb-6 gap-4">
+                        <h2 class="text-2xl font-bold text-gray-800"><i class="fas fa-map-marker-alt text-sky-500 mr-2"></i> Current Weather</h2>
+                        <div class="text-sm text-gray-500" id="last-updated">Last updated: --:--</div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Weather Icon & Temp -->
+                        <div class="text-center md:text-left">
+                            <div class="flex flex-col md:flex-row items-center justify-center md:justify-start mb-4 gap-6">
+                                <div id="weather-icon" class="text-7xl md:text-8xl text-sky-500">
+                                    <i class="fas fa-sun"></i>
+                                </div>
+                                <div>
+                                    <div id="current-temp" class="text-6xl md:text-7xl font-bold text-gray-800">24°C</div>
+                                    <div id="weather-desc" class="text-xl text-gray-600 mt-2">Sunny</div>
+                                </div>
+                            </div>
+                            <div id="location-name" class="text-2xl font-semibold text-gray-700 mb-2">Delhi, IN</div>
+                            <div class="text-gray-500 flex items-center justify-center md:justify-start gap-2">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span id="current-date">Loading date...</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Weather Details -->
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="detail-card">
+                                <i class="fas fa-wind text-sky-400 text-2xl"></i>
+                                <div class="mt-2">
+                                    <div class="text-sm text-gray-500">Wind Speed</div>
+                                    <div id="wind-speed" class="text-xl font-semibold">12 km/h</div>
+                                </div>
+                            </div>
+                            <div class="detail-card">
+                                <i class="fas fa-tint text-sky-400 text-2xl"></i>
+                                <div class="mt-2">
+                                    <div class="text-sm text-gray-500">Humidity</div>
+                                    <div id="humidity" class="text-xl font-semibold">65%</div>
+                                </div>
+                            </div>
+                            <div class="detail-card">
+                                <i class="fas fa-temperature-high text-sky-400 text-2xl"></i>
+                                <div class="mt-2">
+                                    <div class="text-sm text-gray-500">Feels Like</div>
+                                    <div id="feels-like" class="text-xl font-semibold">26°C</div>
+                                </div>
+                            </div>
+                            <div class="detail-card">
+                                <i class="fas fa-compress-alt text-sky-400 text-2xl"></i>
+                                <div class="mt-2">
+                                    <div class="text-sm text-gray-500">Pressure</div>
+                                    <div id="pressure" class="text-xl font-semibold">1013 hPa</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: 5-Day Forecast -->
+            <div class="lg:col-span-1">
+                <div class="glass-card p-6 rounded-2xl shadow-xl h-full animate-slide-up" style="animation-delay: 0.2s">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-6"><i class="fas fa-calendar-week text-sky-500 mr-2"></i> 5-Day Forecast</h2>
+                    
+                    <div id="forecast-container" class="space-y-4">
+                        <!-- Forecast cards will be generated here -->
+                        <div class="forecast-day">
+                            <div class="day-info">
+                                <div class="day">Mon</div>
+                                <div class="date">Mar 18</div>
+                            </div>
+                            <div class="weather-icon text-3xl text-sky-400">
+                                <i class="fas fa-cloud-sun"></i>
+                            </div>
+                            <div class="temps">
+                                <span class="high font-bold">32°</span>
+                                <span class="low text-gray-500 ml-2">24°</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-8 pt-6 border-t border-sky-100">
+                        <h3 class="text-lg font-semibold text-gray-700 mb-3"><i class="fas fa-lightbulb text-amber-500 mr-2"></i> Weather Tips</h3>
+                        <div id="weather-tips" class="text-gray-600 space-y-2">
+                            <p>• Stay hydrated throughout the day</p>
+                            <p>• Perfect weather for outdoor activities</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="mt-12 text-center text-gray-500 text-sm">
+            <p>Made with <i class="fas fa-heart text-red-400"></i> for India | <i class="fas fa-flag text-orange-500"></i> Optimized for Indian climate | Data from OpenWeatherMap</p>
+            <p class="mt-2">MausamWatch • <span id="app-status" class="text-green-500 font-medium">Monitoring Indian weather patterns 🇮🇳</span></p>
+                <p>Created by Harsh Tiwari for India 🇮🇳</p>
+
+        </footer>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div id="loading" class="fixed inset-0 bg-white/90 flex flex-col items-center justify-center z-50 transition-opacity duration-300 hidden">
+        <div class="weather-loader">
+            <div class="cloud-loader"></div>
+            <div class="sun-loader"></div>
+        </div>
+        <p class="mt-6 text-xl font-semibold text-gray-700">Fetching weather data...</p>
+        <p class="text-gray-500">Patience is a virtue, especially with weather!</p>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

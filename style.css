@@ -1,0 +1,270 @@
+/* Custom Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes weatherLoader {
+    0% { transform: translateX(-100px) rotate(0deg); }
+    100% { transform: translateX(300px) rotate(360deg); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes rainFall {
+    0% { transform: translateY(-100px); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(100vh); opacity: 0; }
+}
+
+.animate-fade-in { animation: fadeIn 0.8s ease-out; }
+.animate-slide-up { animation: slideUp 0.6s ease-out; }
+.animate-float { animation: float 3s ease-in-out infinite; }
+.animate-pulse { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+
+/* Glassmorphism Effect */
+.glass-card {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Buttons */
+.btn-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-sky-500 to-emerald-500 text-white font-semibold rounded-xl hover:from-sky-600 hover:to-emerald-600 transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-0.5;
+}
+
+.btn-secondary {
+    @apply px-6 py-3 bg-white text-sky-600 font-semibold rounded-xl border-2 border-sky-300 hover:bg-sky-50 hover:border-sky-400 transition-all duration-300 shadow-sm;
+}
+
+.unit-btn {
+    @apply px-4 py-2 rounded-full font-medium transition-all duration-300 min-w-[60px];
+}
+
+.unit-btn.active {
+    @apply bg-white text-sky-600 shadow-md;
+}
+
+.unit-btn:not(.active) {
+    @apply text-gray-500 hover:text-gray-700;
+}
+
+/* Detail Cards */
+.detail-card {
+    @apply glass-card p-4 rounded-xl flex items-center gap-4 transition-all duration-300 hover:shadow-md hover:-translate-y-1;
+}
+
+/* Forecast Day */
+.forecast-day {
+    @apply glass-card p-4 rounded-xl flex items-center justify-between transition-all duration-300 hover:shadow-md hover:bg-white/80;
+}
+
+.forecast-day:hover {
+    transform: translateX(5px);
+}
+
+.day-info .day {
+    @apply font-bold text-gray-800;
+}
+
+.day-info .date {
+    @apply text-sm text-gray-500;
+}
+
+/* Weather Background Elements */
+.cloud {
+    filter: blur(5px);
+}
+
+.cloud-1 { animation: float 20s infinite ease-in-out; }
+.cloud-2 { animation: float 25s infinite ease-in-out reverse; }
+
+.sun {
+    animation: float 10s infinite ease-in-out;
+    box-shadow: 0 0 40px 20px rgba(255, 200, 0, 0.3);
+}
+
+/* Dynamic Background Classes for India */
+.weather-bg-sunny {
+    background: linear-gradient(135deg, #FFD89B 0%, #19547B 100%);
+}
+
+.weather-bg-rainy {
+    background: linear-gradient(135deg, #4A569D 0%, #DC2424 100%);
+}
+
+.weather-bg-cloudy {
+    background: linear-gradient(135deg, #E8CBC0 0%, #636FA4 100%);
+}
+
+.weather-bg-stormy {
+    background: linear-gradient(135deg, #2C3E50 0%, #FD746C 100%);
+}
+
+.weather-bg-haze {
+    background: linear-gradient(135deg, #BBD2C5 0%, #536976 100%);
+}
+
+.weather-bg-monsoon {
+    background: linear-gradient(135deg, #1D976C 0%, #93F9B9 100%);
+}
+
+/* Loading Animation */
+.weather-loader {
+    position: relative;
+    width: 200px;
+    height: 100px;
+    overflow: hidden;
+}
+
+.cloud-loader {
+    position: absolute;
+    width: 80px;
+    height: 40px;
+    background: white;
+    border-radius: 50px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    animation: weatherLoader 2s linear infinite;
+}
+
+.sun-loader {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background: #ffd700;
+    border-radius: 50%;
+    top: 10px;
+    left: 10px;
+    box-shadow: 0 0 30px #ffd700;
+}
+
+/* Alert Styles */
+.alert {
+    @apply px-4 py-3 rounded-lg flex items-center gap-3 animate-pulse;
+}
+
+.alert-hot {
+    @apply bg-gradient-to-r from-red-100 to-orange-100 border-l-4 border-red-500 text-red-700;
+}
+
+.alert-cold {
+    @apply bg-gradient-to-r from-blue-100 to-cyan-100 border-l-4 border-blue-500 text-blue-700;
+}
+
+/* Recent Cities Dropdown */
+.recent-city-item {
+    @apply px-4 py-3 hover:bg-sky-50 cursor-pointer transition-colors border-b border-gray-100 last:border-0 flex items-center gap-3;
+}
+
+.recent-city-item:hover {
+    @apply bg-sky-50;
+}
+
+.recent-city-item i {
+    @apply text-sky-400;
+}
+
+/* Rain Animation */
+.rain-drop {
+    position: absolute;
+    width: 2px;
+    height: 60px;
+    background: linear-gradient(transparent, rgba(255,255,255,0.7));
+    animation: rainFall linear infinite;
+}
+
+/* Temperature colors */
+.temp-hot {
+    @apply text-red-500;
+}
+
+.temp-warm {
+    @apply text-orange-500;
+}
+
+.temp-mild {
+    @apply text-green-500;
+}
+
+.temp-cool {
+    @apply text-sky-500;
+}
+
+.temp-cold {
+    @apply text-blue-500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .forecast-day {
+        padding: 12px;
+    }
+    
+    #current-temp {
+        font-size: 4rem;
+    }
+    
+    #weather-icon {
+        font-size: 5rem;
+    }
+    
+    .glass-card {
+        padding: 1.5rem;
+    }
+    
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    
+    .detail-card {
+        padding: 0.75rem;
+    }
+    
+    .btn-primary, .btn-secondary {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+    }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a1a1a1;
+}
