@@ -233,7 +233,7 @@ function handleSearch() {
         showError('Please enter a city name');
     }
 }
-
+// Current location weather feature
 // Get Weather by Current Location
 function getCurrentLocationWeather() {
     if (!navigator.geolocation) {
