@@ -89,7 +89,7 @@
 .day-info .date {
     @apply text-sm text-gray-500;
 }
-// Dynamic background based on weather
+/* Dynamic background based on weather */
 
 /* Weather Background Elements */
 .cloud {
