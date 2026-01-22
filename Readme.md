@@ -1,49 +1,41 @@
 # 🌤️ MausamWatch - The Weather Buddy
 
-Hey there! 👋 This is my weather app project I built for my JavaScript assignment. It's not just another weather app - I added some Indian spices to it! 🇮🇳
+# Weather Forecast Application
 
-## What's This All About?
+This project is a Weather Forecast Application developed using HTML, CSS (Tailwind CSS), and JavaScript as part of a JavaScript assignment.
 
-So, we had to build a weather app using JavaScript, HTML, and CSS. The assignment was pretty detailed - like 200 marks worth of stuff to do. I thought, why not make it actually useful for us in India? So I made "MausamWatch" (Mausam means weather in Hindi).
+## Features
+- Search weather by city name
+- Get weather details based on current location
+- Display temperature, humidity, and wind speed
+- 5-day weather forecast
+- Temperature unit toggle (°C / °F)
+- Recently searched cities using local storage
+- Responsive design for desktop, tablet, and mobile
+- Proper error handling for invalid input and API issues
+- Dynamic UI changes based on weather conditions
 
-## What Can This Thing Actually Do?
+## Technologies Used
+- HTML
+- Tailwind CSS
+- JavaScript
+- OpenWeatherMap API
 
-### The Assignment Stuff (I did all of it, promise!):
-- **Search any city** - Type "Mumbai" or "Delhi" and boom, weather!
-- **Your location** - Click a button and it finds where you are (if you let it)
-- **Recent cities** - Remembers where you searched (like your browser remembers passwords)
-- **°C or °F** - Toggle between them (though who uses °F here anyway? 😅)
-- **5-day forecast** - Plan your week ahead
-- **Error messages** - If you type nonsense, it tells you nicely (no annoying popups!)
+## Setup Instructions
+1. Generate an API key from OpenWeatherMap.
+2. Open `app.js` and replace the API key placeholder.
+3. Open `index.html` in a web browser.
 
-### My Extra Touches:
-- **Indian weather alerts** - Warns you about heat waves (above 45°C) and cold waves
-- **Monsoon mode** - Background changes when it's rainy
-- **Chai & pakoras tip** - Suggests chai when it rains (because, obviously!)
-- **Festival alerts** - Reminds you about Diwali season weather
-- **Actually works on phones** - Tested on my friend's iPhone SE
+## Project Structure
+- `index.html` – Application structure
+- `style.css` – Styling
+- `app.js` – Logic and API integration
+- `README.md` – Documentation
 
-## Okay, How Do I Make It Work?
+## Notes
+- `node_modules` is excluded as per assignment instructions.
+- Errors are displayed on UI instead of browser alerts.
 
-### Step 1: Get the Magic Key 🔑
-1. Go to [OpenWeatherMap](https://home.openweathermap.org) (it's free)
-2. Sign up (takes 2 minutes)
-3. Get your "API key" (fancy term for password to get weather data)
-4. **IMPORTANT**: Wait like 10-60 minutes. The key needs to "activate" (annoying, I know)
+## Author
+Harsh Tiwari
 
-### Step 2: Plug In the Key
-1. Open the `app.js` file (right-click → open with Notepad or any editor)
-2. Look for line that says: `API_KEY: '------'`
-3. Replace `'--------'` with your actual key (keep the quotes!)
-4. Save the file
-
-### Step 3: Launch It!
-1. Just double-click `index.html`
-2. It opens in your browser
-3. Start searching cities!
-
-**Pro tip**: If you're in a hurry and don't want to get an API key, change `USE_MOCK_DATA: false` to `true` in `app.js`. It'll use fake data so you can at least see how it looks.
-
-## Files in This Project (The Boring But Important Part)
-
-I kept it simple - only 4 main files:
